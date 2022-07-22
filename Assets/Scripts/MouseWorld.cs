@@ -35,7 +35,6 @@ public class MouseWorld : MonoBehaviour
         transform.position = GetPosition();
     }
 
-
     public static Vector3 GetPosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
