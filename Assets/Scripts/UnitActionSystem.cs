@@ -16,23 +16,16 @@ using System;
 
 public class UnitActionSystem : MonoBehaviour
 {
-    /************************************************************/
-    #region Fields
-
-    [SerializeField] private Unit selectedUnit;
-    [SerializeField] private LayerMask unitLayerMask;
-    
-    public event EventHandler OnSelectedUnitChanged;
-
-    #endregion
-    /************************************************************/
-    #region Properties
 
     public static UnitActionSystem Instance { get; private set; }
 
-    #endregion
-    /************************************************************/
-    #region Functions
+
+    public event EventHandler OnSelectedUnitChanged;
+
+
+    [SerializeField] private Unit selectedUnit;
+    [SerializeField] private LayerMask unitLayerMask;
+
 
     private void Awake()
     {
@@ -60,7 +53,7 @@ public class UnitActionSystem : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, unitLayerMask))
         {
-            if (raycastHit.transform.TryGetComponent(out Unit unit))
+            if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit))
             {
                 SetSelectedUnit(unit);
                 return true;
@@ -82,7 +75,4 @@ public class UnitActionSystem : MonoBehaviour
         return selectedUnit;
     }
 
-
-    #endregion
-    /************************************************************/
 }

@@ -15,28 +15,27 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    /************************************************************/
-    #region Fields
-
-    Vector3 targetPosition;
-
-    #endregion
-	/************************************************************/
-    #region Properties
 
     [SerializeField] private Animator unitAnimator;
 
-    #endregion
-    /************************************************************/
-    #region Functions
+
+    private Vector3 targetPosition;
+    private GridPosition gridPosition;
 
     private void Awake()
     {
         targetPosition = transform.position;
     }
 
+    private void Start()
+    {
+        gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        LevelGrid.Instance.AddUnitAtGridPosition(gridPosition, this);
+    }
+
     private void Update()
     {
+
         float stoppingDistance = .1f;
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
@@ -48,10 +47,18 @@ public class Unit : MonoBehaviour
             transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
 
             unitAnimator.SetBool("IsWalking", true);
-        } 
-        else
+        } else
         {
             unitAnimator.SetBool("IsWalking", false);
+        }
+
+
+        GridPosition newGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        if (newGridPosition != gridPosition)
+        {
+            // Unit changed Grid Position
+            LevelGrid.Instance.UnitMovedGridPosition(this, gridPosition, newGridPosition);
+            gridPosition = newGridPosition;
         }
     }
 
@@ -60,7 +67,4 @@ public class Unit : MonoBehaviour
         this.targetPosition = targetPosition;
     }
 
-
-    #endregion
-    /************************************************************/
 }
