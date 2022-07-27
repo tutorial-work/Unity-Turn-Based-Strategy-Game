@@ -15,10 +15,16 @@ using UnityEngine;
 
 public class UnitSelectedVisual : MonoBehaviour
 {
+    /************************************************************/
+    #region Fields
 
     [SerializeField] private Unit unit;
 
     private MeshRenderer meshRenderer;
+
+    #endregion
+    /************************************************************/
+    #region Functions
 
     private void Awake()
     {
@@ -48,4 +54,7 @@ public class UnitSelectedVisual : MonoBehaviour
             meshRenderer.enabled = false;
         }
     }
+
+    #endregion
+    /************************************************************/
 }

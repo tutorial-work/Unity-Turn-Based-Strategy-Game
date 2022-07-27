@@ -15,10 +15,17 @@ using UnityEngine;
 
 public class GridSystem
 {
+    /************************************************************/
+    #region Fields
+
     private int width;
     private int height;
     private float cellSize;
     private GridObject[,] gridObjectArray;
+
+    #endregion
+    /************************************************************/
+    #region Functions
 
     public GridSystem(int width, int height, float cellSize)
     {
@@ -59,7 +66,8 @@ public class GridSystem
             {
                 GridPosition gridPosition = new GridPosition(x, z);
 
-                Transform debugTransform = GameObject.Instantiate(debugPrefab, GetWorldPosition(gridPosition), Quaternion.identity);
+                Transform debugTransform = 
+                    GameObject.Instantiate(debugPrefab, GetWorldPosition(gridPosition), Quaternion.identity);
                 GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
                 gridDebugObject.SetGridObject(GetGridObject(gridPosition));
             }
@@ -71,4 +79,25 @@ public class GridSystem
         return gridObjectArray[gridPosition.x, gridPosition.z];
     }
 
+    public bool IsValidGridPosition(GridPosition gridPosition)
+    {
+        return  gridPosition.x >= 0 && 
+                gridPosition.z >= 0 && 
+                gridPosition.x < width && 
+                gridPosition.z < height;
+    }
+
+    public int GetWidth()
+    {
+        return width;
+    }
+
+    public int GetHeight()
+    {
+        return height;
+    }
+
+
+    #endregion
+    /************************************************************/
 }

@@ -1,3 +1,15 @@
+/*
+ * File Name: CameraController.cs
+ * Description: This script is for ...
+ * 
+ * Author(s): DefaultCompany, Will Lacey
+ * Date Created: July 22, 2022
+ * 
+ * Additional Comments:
+ *		File Line Length: 120
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +17,8 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
+    /************************************************************/
+    #region Fields
 
     private const float MIN_FOLLOW_Y_OFFSET = 2f;
     private const float MAX_FOLLOW_Y_OFFSET = 12f;
@@ -13,6 +27,10 @@ public class CameraController : MonoBehaviour
 
     private CinemachineTransposer cinemachineTransposer;
     private Vector3 targetFollowOffset;
+
+    #endregion
+    /************************************************************/
+    #region Functions
 
     private void Start()
     {
@@ -89,4 +107,6 @@ public class CameraController : MonoBehaviour
             Vector3.Lerp(cinemachineTransposer.m_FollowOffset, targetFollowOffset, Time.deltaTime * zoomSpeed);
     }
 
+    #endregion
+    /************************************************************/
 }

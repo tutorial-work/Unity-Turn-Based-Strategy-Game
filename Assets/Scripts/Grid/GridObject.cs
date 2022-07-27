@@ -15,10 +15,16 @@ using UnityEngine;
 
 public class GridObject
 {
+    /************************************************************/
+    #region Fields
 
     private GridSystem gridSystem;
     private GridPosition gridPosition;
     private List<Unit> unitList;
+
+    #endregion
+    /************************************************************/
+    #region Functions
 
     public GridObject(GridSystem gridSystem, GridPosition gridPosition)
     {
@@ -52,4 +58,12 @@ public class GridObject
     {
         return unitList;
     }
+
+    public bool HasAnyUnit()
+    {
+        return unitList.Count > 0;
+    }
+
+    #endregion
+    /************************************************************/
 }

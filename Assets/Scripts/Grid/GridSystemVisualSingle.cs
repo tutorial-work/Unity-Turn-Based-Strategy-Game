@@ -1,9 +1,9 @@
 /*
- * File Name: GridDebugObject.cs
+ * File Name: GridSystemVisualSingle.cs
  * Description: This script is for ...
  * 
  * Author(s): DefaultCompany, Will Lacey
- * Date Created: July 22, 2022
+ * Date Created: July 26, 2022
  * 
  * Additional Comments:
  *		File Line Length: 120
@@ -12,29 +12,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class GridDebugObject : MonoBehaviour
+public class GridSystemVisualSingle : MonoBehaviour
 {
     /************************************************************/
     #region Fields
 
-    [SerializeField] private TextMeshPro textMeshPro;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     #endregion
     /************************************************************/
-    #region Fields~
+    #region Functions
 
-    private GridObject gridObject;
-
-    public void SetGridObject(GridObject gridObject)
+    public void Show()
     {
-        this.gridObject = gridObject;
+        meshRenderer.enabled = true;
     }
 
-    private void Update()
+    public void Hide()
     {
-        textMeshPro.text = gridObject.ToString();
+        meshRenderer.enabled = false;
     }
 
     #endregion

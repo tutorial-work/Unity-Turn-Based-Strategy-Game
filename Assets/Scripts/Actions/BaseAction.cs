@@ -1,9 +1,9 @@
 /*
- * File Name: GridDebugObject.cs
+ * File Name: BaseAction.cs
  * Description: This script is for ...
  * 
  * Author(s): DefaultCompany, Will Lacey
- * Date Created: July 22, 2022
+ * Date Created: July 26, 2022
  * 
  * Additional Comments:
  *		File Line Length: 120
@@ -12,29 +12,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using System;
 
-public class GridDebugObject : MonoBehaviour
+public abstract class BaseAction : MonoBehaviour
 {
     /************************************************************/
     #region Fields
 
-    [SerializeField] private TextMeshPro textMeshPro;
+    protected Unit unit;
+    protected bool isActive;
+    protected Action onActionComplete;
 
     #endregion
     /************************************************************/
-    #region Fields~
+    #region Fields
 
-    private GridObject gridObject;
-
-    public void SetGridObject(GridObject gridObject)
+    protected virtual void Awake()
     {
-        this.gridObject = gridObject;
-    }
-
-    private void Update()
-    {
-        textMeshPro.text = gridObject.ToString();
+        unit = GetComponent<Unit>();
     }
 
     #endregion

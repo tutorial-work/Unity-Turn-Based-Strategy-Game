@@ -16,16 +16,25 @@ using System;
 
 public class UnitActionSystem : MonoBehaviour
 {
-
-    public static UnitActionSystem Instance { get; private set; }
-
+    /************************************************************/
+    #region Fields
 
     public event EventHandler OnSelectedUnitChanged;
-
 
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
 
+    private bool isBusy;
+
+    #endregion
+    /************************************************************/
+    #region Properties
+
+    public static UnitActionSystem Instance { get; private set; }
+
+    #endregion
+    /************************************************************/
+    #region Functions
 
     private void Awake()
     {
@@ -40,11 +49,30 @@ public class UnitActionSystem : MonoBehaviour
 
     private void Update()
     {
+        if (isBusy)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             if (TryHandleUnitSelection()) return;
 
-            selectedUnit.Move(MouseWorld.GetPosition());
+            GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
+
+            if (selectedUnit.GetMoveAction().IsValidActionGridPosition(mouseGridPosition))
+            {
+                SetBusy();
+                selectedUnit.GetMoveAction().Move(mouseGridPosition, ClearBusy);
+
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            SetBusy();
+            selectedUnit.GetSpinAction().Spin(ClearBusy);
+
         }
     }
 
@@ -75,4 +103,17 @@ public class UnitActionSystem : MonoBehaviour
         return selectedUnit;
     }
 
+    private void SetBusy()
+    {
+        isBusy = true;
+    }
+
+    private void ClearBusy()
+    {
+        isBusy = false;
+    }
+
+
+    #endregion
+    /************************************************************/
 }
