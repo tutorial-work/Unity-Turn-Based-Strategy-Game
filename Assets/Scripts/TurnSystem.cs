@@ -17,11 +17,17 @@ using UnityEngine;
 public class TurnSystem : MonoBehaviour
 {
     /************************************************************/
-    #region Fields
+    #region Events
 
     public event EventHandler OnTurnChanged;
 
+    #endregion
+    /************************************************************/
+    #region Fields
+
     private int turnNumber = 1;
+
+    private bool isPlayerTurn = true;
 
     #endregion
     /************************************************************/
@@ -44,10 +50,11 @@ public class TurnSystem : MonoBehaviour
         Instance = this;
     }
 
-
     public void NextTurn()
     {
         turnNumber++;
+
+        isPlayerTurn = !isPlayerTurn;
 
         OnTurnChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -55,6 +62,11 @@ public class TurnSystem : MonoBehaviour
     public int GetTurnNumber()
     {
         return turnNumber;
+    }
+
+    public bool IsPlayerTurn()
+    {
+        return isPlayerTurn;
     }
 
     #endregion

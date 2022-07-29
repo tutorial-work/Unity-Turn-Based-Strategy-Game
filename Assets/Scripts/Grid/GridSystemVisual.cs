@@ -20,7 +20,6 @@ public class GridSystemVisual : MonoBehaviour
 
     [SerializeField] private Transform gridSystemVisualSinglePrefab;
 
-
     private GridSystemVisualSingle[,] gridSystemVisualSingleArray;
 
     #endregion

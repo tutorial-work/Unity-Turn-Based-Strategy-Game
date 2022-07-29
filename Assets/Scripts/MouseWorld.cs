@@ -18,9 +18,9 @@ public class MouseWorld : MonoBehaviour
     /************************************************************/
     #region Fields
 
-    private static MouseWorld instance;
-
     [SerializeField] private LayerMask mousePlaneLayerMask;
+
+    private static MouseWorld instance;
 
     #endregion
     /************************************************************/

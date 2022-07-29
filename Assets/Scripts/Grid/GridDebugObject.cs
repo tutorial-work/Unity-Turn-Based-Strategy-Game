@@ -21,11 +21,11 @@ public class GridDebugObject : MonoBehaviour
 
     [SerializeField] private TextMeshPro textMeshPro;
 
+    private GridObject gridObject;
+
     #endregion
     /************************************************************/
-    #region Fields~
-
-    private GridObject gridObject;
+    #region Functions
 
     public void SetGridObject(GridObject gridObject)
     {

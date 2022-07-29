@@ -18,12 +18,16 @@ using UnityEngine.EventSystems;
 public class UnitActionSystem : MonoBehaviour
 {
     /************************************************************/
-    #region Fields
+    #region Events
 
     public event EventHandler OnSelectedUnitChanged;
     public event EventHandler OnSelectedActionChanged;
     public event EventHandler<bool> OnBusyChanged;
     public event EventHandler OnActionStarted;
+
+    #endregion
+    /************************************************************/
+    #region Fields
 
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
@@ -60,6 +64,11 @@ public class UnitActionSystem : MonoBehaviour
     private void Update()
     {
         if (isBusy)
+        {
+            return;
+        }
+
+        if (!TurnSystem.Instance.IsPlayerTurn())
         {
             return;
         }
@@ -127,6 +136,12 @@ public class UnitActionSystem : MonoBehaviour
                     if (unit == selectedUnit)
                     {
                         // Unit is already selected
+                        return false;
+                    }
+
+                    if (unit.IsEnemy())
+                    {
+                        // Clicked on an Enemy
                         return false;
                     }
                     
