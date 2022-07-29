@@ -186,5 +186,5 @@ TrailRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.01
-  m_Autodestruct: 0
+  m_Autodestruct: 1
   m_Emitting: 1

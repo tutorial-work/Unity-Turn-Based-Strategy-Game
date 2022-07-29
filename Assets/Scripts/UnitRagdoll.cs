@@ -28,6 +28,7 @@ public class UnitRagdoll : MonoBehaviour
     {
         MatchAllChildTransforms(originalRootBone, ragdollRootBone);
 
+        // TODO: calculate the position from where the attack took place from 
         ApplyExplosionToRagdoll(ragdollRootBone, 300f, transform.position, 10f);
     }
 
