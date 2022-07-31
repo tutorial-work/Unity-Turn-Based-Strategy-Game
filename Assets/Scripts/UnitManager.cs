@@ -46,12 +46,15 @@ public class UnitManager : MonoBehaviour
         unitList = new List<Unit>();
         friendlyUnitList = new List<Unit>();
         enemyUnitList = new List<Unit>();
+
+        Unit.OnAnyUnitSpawned += Unit_OnAnyUnitSpawned;
+        Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
     }
 
     private void Start()
     {
-        Unit.OnAnyUnitSpawned += Unit_OnAnyUnitSpawned;
-        Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
+        // Unit.OnAnyUnitSpawned += Unit_OnAnyUnitSpawned;
+        // Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
     }
 
     private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)

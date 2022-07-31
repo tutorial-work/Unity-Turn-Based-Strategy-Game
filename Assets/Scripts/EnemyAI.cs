@@ -88,7 +88,7 @@ public class EnemyAI : MonoBehaviour
         if (!TurnSystem.Instance.IsPlayerTurn())
         {
             state = State.TakingTurn;
-            timer = 1f;
+            timer = 1f;//2f;
         }
     }
 
