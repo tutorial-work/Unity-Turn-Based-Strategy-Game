@@ -21,6 +21,7 @@ public class GridObject
     private GridSystem<GridObject> gridSystem;
     private GridPosition gridPosition;
     private List<Unit> unitList;
+    private IInteractable interactable;
 
     #endregion
     /************************************************************/
@@ -73,6 +74,16 @@ public class GridObject
         {
             return null;
         }
+    }
+
+    public IInteractable GetInteractable()
+    {
+        return interactable;
+    }
+
+    public void SetInteractable(IInteractable interactable)
+    {
+        this.interactable = interactable;
     }
 
     #endregion

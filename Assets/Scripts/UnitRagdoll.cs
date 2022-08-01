@@ -29,7 +29,9 @@ public class UnitRagdoll : MonoBehaviour
         MatchAllChildTransforms(originalRootBone, ragdollRootBone);
 
         // TODO: calculate the position from where the attack took place from 
-        ApplyExplosionToRagdoll(ragdollRootBone, 300f, transform.position, 10f);
+        Vector3 randomDir = new Vector3(Random.Range(-1f, +1f), 0, Random.Range(-1f, +1f));
+        ApplyExplosionToRagdoll(ragdollRootBone, 300f, transform.position + randomDir, 10f);
+
     }
 
     private void MatchAllChildTransforms(Transform root, Transform clone)
